@@ -22,7 +22,7 @@ const Home = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:8080/api/v1/post", {
+        const res = await fetch("https://yonaartquest.onrender.com/api/v1/post", {
           method: "GET",
           headers: {
             "content-type": "application/json",

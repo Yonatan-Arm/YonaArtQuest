@@ -18,7 +18,11 @@ const CreatePost = () => {
     if (form.prompt && form.photo) {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:8080/api/v1/post", {
+        const BASE_URL =
+          process.env.NODE_ENV === "production"
+            ? "/api/v1/post"
+            : "//localhost:8080/api/v1/post";
+        const res = await fetch(BASE_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -31,8 +35,8 @@ const CreatePost = () => {
         alert(error);
         setLoading(false);
       }
-    }else{
-      alert("Please enter a prompt")
+    } else {
+      alert("Please enter a prompt");
     }
   };
   const handleChange = (e) =>
@@ -45,7 +49,11 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const res = await fetch("http://localhost:8080/api/v1/dalle", {
+        const BASE_URL =
+          process.env.NODE_ENV === "production"
+            ? "/api/v1/dalle"
+            : "//localhost:8080/api/v1/dalle";
+        const res = await fetch(BASE_URL, {
           method: "POST",
           headers: {
             "content-type": "application/json",

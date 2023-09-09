@@ -22,7 +22,11 @@ const Home = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:8080/api/v1/post", {
+        const BASE_URL =
+          process.env.NODE_ENV === "production"
+            ? "/api/v1/post"
+            : "//localhost:8080/api/v1/post";
+        const res = await fetch(BASE_URL, {
           method: "GET",
           headers: {
             "content-type": "application/json",

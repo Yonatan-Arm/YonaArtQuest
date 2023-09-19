@@ -13,3 +13,14 @@ export function getRandomPrompt(prompt) {
 export async function downloadImage(_id, photo) {
   FileSaver.saveAs(photo, `download-${_id}.jpg`);
 }
+
+
+export async function getEmptyUser() {
+  return {
+    _id: null,
+    username: "",
+    password: "",
+    credits:5,
+    posts:[],
+  };
+}

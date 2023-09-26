@@ -3,10 +3,16 @@ import { Form, useNavigate, Link } from "react-router-dom";
 import { FormField, Loader } from "../components";
 import { useForm } from "../hooks/useForm";
 import { getEmptyUser } from "../utils";
+import { userActions } from "../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
-  const [user, handleChange, setUser] = useForm(null);
+  const [user, handleChange, setUser] = useForm({
+    username: "",
+    password: "",
+  });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [warning, setWarning] = useState(false);
   useEffect(() => {
     loadUser();
@@ -28,6 +34,8 @@ const Signup = () => {
         }, 3000);
         return;
       }
+      const userLogin = dispatch(userActions.signup(user));
+      userLogin ? navigate("/create-post") : null;
     } catch (error) {
       setWarning(true);
     }

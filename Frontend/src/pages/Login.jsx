@@ -3,7 +3,7 @@ import { Form, useNavigate, Link } from "react-router-dom";
 import { FormField, Loader } from "../components";
 import { useForm } from "../hooks/useForm";
 import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "../store/slices/userSlice";
+import { userActions} from "../store/slices/userSlice";
 
 import { getEmptyUser } from "../utils";
 
@@ -36,7 +36,7 @@ const Login = () => {
         }, 3000);
         return;
       }
-      const userLogin = await dispatch(userActions.setuser(user));
+      const userLogin = dispatch(userActions.login(user));
       userLogin ? navigate("/create-post") : null;
     } catch (error) {
       setWarning(true);
